@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import './App.css'
+import ForgotPassword from './ForgotPassword'
 
 function App() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [showForgotPassword, setShowForgotPassword] = useState(false)
 
   const isFormValid = email.trim() !== '' && password.trim() !== ''
 
@@ -14,8 +16,17 @@ function App() {
   }
 
   const handleForgotPassword = () => {
-    // UI-only behavior, no navigation required
-    console.log('Forgot password clicked')
+    // Show forgot password screen
+    setShowForgotPassword(true)
+  }
+
+  const handleBackToLogin = () => {
+    // Return to login screen
+    setShowForgotPassword(false)
+  }
+
+  if (showForgotPassword) {
+    return <ForgotPassword onBackToLogin={handleBackToLogin} />
   }
 
   return (
